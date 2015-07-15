@@ -160,6 +160,7 @@
 		C07979C51A679879004530FC /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = C07979BC1A679879004530FC /* UIRefreshControl+AFNetworking.m */; };
 		C07979C61A679879004530FC /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = C07979BE1A679879004530FC /* UIWebView+AFNetworking.m */; };
 		C07979C91A67A1CC004530FC /* JsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C07979C81A67A1CC004530FC /* JsonParser.m */; };
+		EED392F71B55E4C7004576A8 /* NSArray+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = EED392F61B55E4C7004576A8 /* NSArray+Log.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -384,6 +385,8 @@
 		C07979BE1A679879004530FC /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
 		C07979C71A67A1CC004530FC /* JsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonParser.h; sourceTree = "<group>"; };
 		C07979C81A67A1CC004530FC /* JsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonParser.m; sourceTree = "<group>"; };
+		EED392F51B55E4C7004576A8 /* NSArray+Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Log.h"; sourceTree = "<group>"; };
+		EED392F61B55E4C7004576A8 /* NSArray+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Log.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -477,6 +480,7 @@
 		43EAD0FD1A6652090056F66F = {
 			isa = PBXGroup;
 			children = (
+				EED392F41B55E4C7004576A8 /* Log */,
 				43EAD1081A6652090056F66F /* 菜单项目 */,
 				43EAD1221A6652090056F66F /* 菜单项目Tests */,
 				43EAD1071A6652090056F66F /* Products */,
@@ -797,6 +801,15 @@
 			name = "UIKit+AFNetworking";
 			sourceTree = "<group>";
 		};
+		EED392F41B55E4C7004576A8 /* Log */ = {
+			isa = PBXGroup;
+			children = (
+				EED392F51B55E4C7004576A8 /* NSArray+Log.h */,
+				EED392F61B55E4C7004576A8 /* NSArray+Log.m */,
+			);
+			path = Log;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1028,6 +1041,7 @@
 				43DEE0141A689C1600362FF2 /* GroupPurchaseTableViewCell.m in Sources */,
 				C07979821A6795E8004530FC /* BusinessCell.m in Sources */,
 				43D860851A6A46CF003837FE /* NSString+PinYin4Cocoa.m in Sources */,
+				EED392F71B55E4C7004576A8 /* NSArray+Log.m in Sources */,
 				C07979BF1A679879004530FC /* AFNetworkActivityIndicatorManager.m in Sources */,
 				43798F9D1A6B9CB7000B762A /* GroupSearch2ViewController.m in Sources */,
 				43D860861A6A46CF003837FE /* PinyinFormatter.m in Sources */,

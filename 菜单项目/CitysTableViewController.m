@@ -13,7 +13,7 @@
 
 //声明一个属性，用来保存查询结果
 @property(nonatomic,strong)NSMutableArray *results;
-@property (nonatomic, strong)NSArray *arr;
+//@property (nonatomic, strong)NSArray *arr;
 @end
 
 @implementation CitysTableViewController
@@ -34,13 +34,8 @@
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if (section == 0) {
-        return @"定位";
-    }else if(section == 1){
-        return @"热点城市";
-    }else{
-        return [NSString stringWithFormat:@"%c",section+63];
-    }
+    NSArray *a = @[@"定位",@"热点城市",@"a",@"b",@"c",@"d",@"e",@"f",@"g",@"h",@"i",@"j",@"k",@"l",@"m",@"n",@"o",@"p",@"q",@"r",@"s",@"t",@"u",@"v",@"w",@"x",@"y",@"z"];
+    return [NSString stringWithFormat:@"%@",a[section]];
 }
 //设置索引的对应关系
 -(NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index{
@@ -63,7 +58,8 @@
     
     NSString *pa = [[NSBundle mainBundle]pathForResource:@"cities" ofType:@"plist"];
     NSArray *array = [NSArray arrayWithContentsOfFile:pa];
-    self.arr = array;
+//    self.arr = array;
+    self.citys = [NSMutableArray arrayWithArray:array];
     
     
     self.title = @"选择城市";
@@ -82,18 +78,20 @@
     self.mySearchDisplayController.searchResultsDataSource = self;
     self.mySearchDisplayController.searchResultsDelegate = self;
 //    解析城市代码
-    self.citys = [NSMutableArray array];
-    NSString *path =  @"http://api.dianping.com/v1/metadata/get_cities_with_coupons";
-    path = [TRUtils serializeURL:path params:nil];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager setResponseSerializer:[AFHTTPResponseSerializer serializer]];
-    [manager GET:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
-        self.citys = [dictionary objectForKey:@"cities"];
-        [self.tableView reloadData];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-
-    }];
+//    self.citys = [[NSMutableArray array]initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"cities" ofType:@".plist"]];
+    
+    
+//    NSString *path =  @"http://api.dianping.com/v1/metadata/get_cities_with_coupons";
+//    path = [TRUtils serializeURL:path params:nil];
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    [manager setResponseSerializer:[AFHTTPResponseSerializer serializer]];
+//    [manager GET:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
+//        self.citys = [dictionary objectForKey:@"cities"];
+//        [self.tableView reloadData];
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//
+//    }];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -119,63 +117,11 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 //#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return [self.arr count];
+    return [self.citys count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    /*
-    
-//#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    if (tableView == self.tableView) {
-        return self.citys.count;
-    }else{
-        self.results = [NSMutableArray array];
-        if (self.mySearchDisplayController.searchBar.text.length>0&&![ChineseInclude isIncludeChineseInString:self.mySearchDisplayController.searchBar.text])
-        {
-            for (int i = 0; i < self.citys.count; i++)
-            {
-                if ([ChineseInclude isIncludeChineseInString:self.citys[i]])
-                {
-                    NSString *tempPinYinStr = [PinYinForObjc chineseConvertToPinYin:self.citys[i]];
-                    NSRange titleResult=[tempPinYinStr rangeOfString:self.mySearchDisplayController.searchBar.text options:NSCaseInsensitiveSearch];
-                    if (titleResult.length > 0)
-                    {
-                        [self.results addObject:self.citys[i]];
-                    }
-//                    NSString *tempPinYinHeadStr = [PinYinForObjc chineseConvertToPinYinHead:self.citys[i]];
-//                    NSRange titleHeadResult=[tempPinYinHeadStr rangeOfString:self.mySearchDisplayController.searchBar.text options:NSCaseInsensitiveSearch];
-//                    if (titleHeadResult.length>0)
-//                    {
-//                        [self.results addObject:self.citys[i]];
-//                    }
-                }
-                else
-                {
-                    NSRange titleResult=[self.citys[i] rangeOfString:self.mySearchDisplayController.searchBar.text options:NSCaseInsensitiveSearch];
-                    if (titleResult.length>0)
-                    {
-                        [self.results addObject:self.citys[i]];
-                    }
-                }
-            }
-        }
-        else if (self.mySearchDisplayController.searchBar.text.length > 0 && [ChineseInclude isIncludeChineseInString:self.mySearchDisplayController.searchBar.text])
-        {
-            for (NSString *tempStr in self.citys)
-            {
-                NSRange titleResult = [tempStr rangeOfString:self.mySearchDisplayController.searchBar.text options:NSCaseInsensitiveSearch];
-                if (titleResult.length > 0)
-                {
-                    [self.results addObject:tempStr];
-                }
-            }
-        }
-
-        return self.results.count;
-    }
-     */
-    NSArray *array = self.arr[section];
+    NSArray *array = self.citys[section];
     return array.count;
 }
 
@@ -186,11 +132,11 @@
     if (cell == nil)
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        
     }
     
-    NSArray *array = self.arr[indexPath.section];
+    NSArray *array = self.citys[indexPath.section];
     cell.textLabel.text = array[indexPath.row];
-    
     /*
     if (tableView == self.tableView) {
         cell.textLabel.text = self.citys[indexPath.row];
@@ -208,7 +154,7 @@
 //传值
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.firstPageViewController.globalCity = self.citys[indexPath.row];
+    self.firstPageViewController.globalCity = self.citys[indexPath.section][indexPath.row];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 /*

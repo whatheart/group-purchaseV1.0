@@ -28,18 +28,18 @@
     [signString appendString:kAPP_SECRET];
     unsigned char digest[20];
     NSData *stringBytes = [signString dataUsingEncoding: NSUTF8StringEncoding];
-    if (CC_SHA1([stringBytes bytes], [stringBytes length], digest)) {
-        /* SHA-1 hash has been calculated and stored in 'digest'. */
-        NSMutableString *digestString = [NSMutableString stringWithCapacity:20];
-        for (int i=0; i<20; i++) {
-            unsigned char aChar = digest[i];
-            [digestString appendFormat:@"%02X", aChar];
-        }
-        [paramsString appendFormat:@"&sign=%@", [digestString uppercaseString]];
-        return [NSString stringWithFormat:@"%@://%@%@?%@", [parsedURL scheme], [parsedURL host], [parsedURL path], [paramsString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    } else {
+//    if (CC_SHA1([stringBytes bytes], [stringBytes length], digest)) {
+//        /* SHA-1 hash has been calculated and stored in 'digest'. */
+//        NSMutableString *digestString = [NSMutableString stringWithCapacity:20];
+//        for (int i=0; i<20; i++) {
+//            unsigned char aChar = digest[i];
+//            [digestString appendFormat:@"%02X", aChar];
+//        }
+//        [paramsString appendFormat:@"&sign=%@", [digestString uppercaseString]];
+//        return [NSString stringWithFormat:@"%@://%@%@?%@", [parsedURL scheme], [parsedURL host], [parsedURL path], [paramsString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+//    } else {
         return nil;
-    }
+//    }
 }
 + (NSDictionary *)parseQueryString:(NSString *)query {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithCapacity:6];

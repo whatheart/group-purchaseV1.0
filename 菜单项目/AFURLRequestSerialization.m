@@ -311,11 +311,11 @@ forHTTPHeaderField:(NSString *)field
                                      error:(NSError *__autoreleasing *)error
 {
     NSParameterAssert(method);
-    NSParameterAssert(URLString);
+//    NSParameterAssert(URLString);
 
     NSURL *url = [NSURL URLWithString:URLString];
 
-    NSParameterAssert(url);
+//    NSParameterAssert(url);
 
     NSMutableURLRequest *mutableRequest = [[NSMutableURLRequest alloc] initWithURL:url];
     mutableRequest.HTTPMethod = method;
